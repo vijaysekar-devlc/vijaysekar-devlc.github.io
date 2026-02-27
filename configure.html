@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Configure – LiveControl Zoom</title>
+  <style>
+    body { font-family: system-ui, -apple-system, sans-serif; max-width: 720px; margin: 0 auto; padding: 24px; line-height: 1.6; color: #333; }
+    h1 { font-size: 1.5rem; margin-top: 0; }
+    h2 { font-size: 1.15rem; margin-top: 1.5em; }
+    p, ul { margin: 0.5em 0; }
+    ul { padding-left: 1.5em; }
+    code { background: #f0f0f0; padding: 2px 6px; border-radius: 4px; font-size: 0.9em; }
+    a { color: #0066cc; }
+  </style>
+</head>
+<body>
+  <h1>Configure LiveControl Zoom</h1>
+  <p>LiveControl Zoom is a desktop application. Configuration is done <strong>on your Windows machine</strong> inside the app, not on a web page.</p>
+
+  <h2>Where to configure</h2>
+  <ul>
+    <li><strong>Open the app</strong> on the computer where it is installed.</li>
+    <li>Use the main window to set Meeting ID, Passcode, Display Name, ZAK/join token (if needed), SDK JWT (for development), and automation settings (pre-launch, time window, database path).</li>
+    <li>Click <strong>Save to config</strong> to write settings to <code>LivecontrolZoomAuto.config.json</code> in the app folder.</li>
+    <li>To sign in or sign out with Zoom (OAuth), use <strong>Sign in with Zoom</strong> or <strong>Sign out</strong> in the OAuth section of the app.</li>
+  </ul>
+
+  <h2>After authorization</h2>
+  <p>Once you have authorized the app with Zoom (Sign in with Zoom), the app stores tokens locally. You can change display name, database path, and timing at any time in the app and save to config. No separate “configuration page” is required.</p>
+
+  <p>For full setup and usage instructions, see our <a href="documentation.html">Zoom app documentation</a>.</p>
+</body>
+</html>

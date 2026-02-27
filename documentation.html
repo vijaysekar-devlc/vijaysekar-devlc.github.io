@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Zoom app guide – LiveControl Zoom</title>
+  <style>
+    body { font-family: system-ui, -apple-system, sans-serif; max-width: 720px; margin: 0 auto; padding: 24px; line-height: 1.6; color: #333; }
+    h1 { font-size: 1.5rem; margin-top: 0; }
+    h2 { font-size: 1.15rem; margin-top: 1.5em; }
+    h3 { font-size: 1rem; margin-top: 1em; }
+    p, ul, ol { margin: 0.5em 0; }
+    ul, ol { padding-left: 1.5em; }
+    code { background: #f0f0f0; padding: 2px 6px; border-radius: 4px; font-size: 0.9em; }
+    a { color: #0066cc; }
+  </style>
+</head>
+<body>
+  <h1>Zoom app guide – LiveControl Zoom</h1>
+  <p>This guide explains how to add, use, and remove the LiveControl Zoom app with your Zoom account.</p>
+
+  <h2>Adding the app</h2>
+  <ol>
+    <li>Install LiveControl Zoom on your Windows PC (run the installer or copy the application files).</li>
+    <li>Open the app. In the main window, find the <strong>OAuth (marketplace)</strong> section.</li>
+    <li>Click <strong>Sign in with Zoom</strong>. Your browser will open the Zoom authorization page.</li>
+    <li>Sign in to Zoom if prompted, then review the permissions and click <strong>Authorize</strong> to allow the app to join meetings on your behalf.</li>
+    <li>You will be redirected back to the app (via <code>http://localhost:38472/callback</code>). The app will show that you are signed in. You only need to do this once per machine; the app stores tokens locally and can refresh them.</li>
+  </ol>
+  <p><strong>Note:</strong> If you use the optional Runner for scheduled joins, ensure the app’s config has the correct database path and timing (pre-launch minutes, time window). Run the credential setup tool once with your Zoom OAuth app’s Client ID and Secret if you use JWT for development.</p>
+
+  <h2>Using the app</h2>
+  <h3>Manual join</h3>
+  <ol>
+    <li>Enter the <strong>Meeting ID</strong> and <strong>Passcode</strong> (if required).</li>
+    <li>Optionally set <strong>Display Name</strong> (e.g. “LiveControl Encoder”).</li>
+    <li>If you signed in with Zoom, the app will use your OAuth tokens (ZAK or join token) when joining. Otherwise, enter an SDK JWT and click <strong>Auth</strong> first.</li>
+    <li>Click <strong>Join meeting</strong>. The app will join with audio and video on and Original Sound enabled.</li>
+  </ol>
+  <h3>Scheduled (automatic) join</h3>
+  <ol>
+    <li>Configure the app: set <strong>Database path</strong> to your SQLite database that has a table (e.g. Dashboard) with event date/time, Zoom meeting ID, and passcode columns. Set <strong>Pre-launch (min)</strong> and <strong>Time window (min)</strong> as needed.</li>
+    <li>Click <strong>Save to config</strong>.</li>
+    <li>Schedule the Runner (e.g. <code>LivecontrolZoomAuto.Runner.exe</code>) to run on a schedule (e.g. Windows Task Scheduler) so it runs periodically. The Runner reads upcoming events from the database and launches the main app with <code>--join &lt;meetingId&gt; [passcode]</code> at the right time.</li>
+    <li>When the main app is launched by the Runner, it will auto-join the meeting after a short delay. Ensure you have signed in with Zoom (or have a valid JWT) so the Runner can obtain ZAK or a join token for the meeting.</li>
+  </ol>
+  <p>For more on ZAK vs join token (OBF): the app uses ZAK when available (unattended join). If ZAK is not available, it uses a per-meeting join token (OBF); in that case the Zoom user may need to be in the meeting or be the host.</p>
+
+  <h2>Removing the app</h2>
+  <ol>
+    <li><strong>Revoke Zoom authorization:</strong> In the app, click <strong>Sign out</strong> in the OAuth section. Optionally, go to your Zoom account settings on the web, find “Connected applications” or “Authorized apps,” and remove LiveControl Zoom.</li>
+    <li><strong>Stop the Runner:</strong> If you use Windows Task Scheduler (or similar) to run the Runner, disable or delete that task.</li>
+    <li><strong>Uninstall the application:</strong> Use Windows “Add or remove programs” (or equivalent) to uninstall LiveControl Zoom, or delete the application folder.</li>
+    <li><strong>Remove local data (optional):</strong> Delete the app’s config file (<code>LivecontrolZoomAuto.config.json</code>) and encrypted credential/token files from the app directory if you want to remove all stored settings and tokens.</li>
+  </ol>
+  <p>After removal, the app will no longer have access to your Zoom account. You can reinstall and sign in again later if needed.</p>
+
+  <h2>Support</h2>
+  <p>For help, see our <a href="support.html">Support</a> page or contact <a href="mailto:support@livecontrol.io">support@livecontrol.io</a>.</p>
+</body>
+</html>

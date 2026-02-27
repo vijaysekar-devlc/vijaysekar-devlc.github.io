@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Support – LiveControl Zoom</title>
+  <style>
+    body { font-family: system-ui, -apple-system, sans-serif; max-width: 720px; margin: 0 auto; padding: 24px; line-height: 1.6; color: #333; }
+    h1 { font-size: 1.5rem; margin-top: 0; }
+    h2 { font-size: 1.15rem; margin-top: 1.5em; }
+    p, ul { margin: 0.5em 0; }
+    ul { padding-left: 1.5em; }
+    a { color: #0066cc; }
+  </style>
+</head>
+<body>
+  <h1>Support – LiveControl Zoom</h1>
+  <p>Get help with installing, configuring, and using LiveControl Zoom.</p>
+
+  <h2>Contact us</h2>
+  <p>For direct support from our team:</p>
+  <ul>
+    <li><strong>Email:</strong> <a href="mailto:support@livecontrol.io">support@livecontrol.io</a></li>
+    <li>Please include your Windows version, a short description of the issue, and any error messages if applicable.</li>
+  </ul>
+
+  <h2>Documentation</h2>
+  <p>For detailed instructions on adding, using, and removing the app with Zoom, see our <a href="documentation.html">Zoom app documentation</a>.</p>
+
+  <h2>Common issues</h2>
+  <ul>
+    <li><strong>“Sign in with Zoom” fails or redirect doesn’t work:</strong> Ensure the Zoom OAuth app has redirect URI <code>http://localhost:38472/callback</code> and that no other app is using that port.</li>
+    <li><strong>Join fails (auth / token):</strong> Try signing out and signing in again with Zoom. For scheduled joins, ensure the Runner has run after you signed in so tokens are available.</li>
+    <li><strong>Runner doesn’t launch the app:</strong> Check the database path and column names (EventDate, meeting ID, passcode) in config, and that events are within the time window and pre-launch settings.</li>
+  </ul>
+</body>
+</html>
